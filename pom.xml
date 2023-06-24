@@ -11,7 +11,7 @@
     <groupId>az.ingress</groupId>
     <artifactId>ingress-feign</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ingress-feign</name>
+    <name>ms-ingress-feign</name>
     <description>ingress-feign</description>
     <properties>
         <java.version>17</java.version>
