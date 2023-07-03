@@ -1,6 +1,5 @@
 package az.ingress.ingressfeign.service;
 
-import az.ingress.ingressfeign.client.CatFactClient;
 import az.ingress.ingressfeign.dao.entity.User;
 import az.ingress.ingressfeign.dao.repository.UserRepository;
 import az.ingress.ingressfeign.exception.ApplicationException;
