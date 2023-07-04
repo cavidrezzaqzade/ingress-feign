@@ -1,8 +1,7 @@
 package az.ingress.ingressfeign.client;
 
-import az.ingress.config.FeignSupportConfig;
+import az.ingress.ingressfeign.config.FeignSupportConfig;
 import az.ingress.ingressfeign.model.client.InformationDto;
-import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

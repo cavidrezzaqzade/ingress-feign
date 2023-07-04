@@ -1,4 +1,4 @@
-package az.ingress.config;
+package az.ingress.ingressfeign.config;
 
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
