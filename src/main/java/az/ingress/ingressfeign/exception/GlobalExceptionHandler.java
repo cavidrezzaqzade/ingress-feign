@@ -61,15 +61,12 @@ public class GlobalExceptionHandler extends DefaultErrorAttributes {
         return new ResponseEntity<>(attributes, status);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<?> handleGeneralException(Exception ex, WebRequest request) {
-//        log.error("General Exception handler exception -> {}", ex.getMessage());
-//        return MessageResponse.response(ErrorsFinal.INTERNAL_SERVER_ERROR.getMessage(), ofType(request, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(),
-//                ErrorsFinal.INTERNAL_SERVER_ERROR.getMessage(), Collections.EMPTY_LIST), HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-
-
-
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGeneralException(Exception ex, WebRequest request) {
+        log.error("General Exception handler exception -> {}", ex.getMessage());
+        return MessageResponse.response(Errors.INTERNAL_SERVER_ERROR.getMessage(), ofType(request, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(),
+                Errors.INTERNAL_SERVER_ERROR.getMessage(), Collections.EMPTY_LIST), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }
 

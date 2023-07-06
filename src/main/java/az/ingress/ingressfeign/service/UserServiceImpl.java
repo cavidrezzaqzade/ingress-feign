@@ -3,7 +3,7 @@ package az.ingress.ingressfeign.service;
 import az.ingress.ingressfeign.dao.entity.User;
 import az.ingress.ingressfeign.dao.repository.UserRepository;
 import az.ingress.ingressfeign.exception.ApplicationException;
-import az.ingress.ingressfeign.exception.ErrorsFinal;
+import az.ingress.ingressfeign.exception.Errors;
 import az.ingress.ingressfeign.mapper.PageableMapper;
 import az.ingress.ingressfeign.mapper.UserMapper;
 import az.ingress.ingressfeign.model.UserDetails;
@@ -48,20 +48,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delete(Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(ErrorsFinal.DATA_NOT_FOUND, Map.of("id", id)));
+        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", id)));
         repository.delete(user);
     }
 
     @Override
     public UserDto update(UserDto dto, Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(ErrorsFinal.DATA_NOT_FOUND, Map.of("id", id)));
+        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", id)));
         User userNew = mapper.updateUser(user, dto);
         return mapper.entityToDto(repository.save(userNew));
     }
 
     @Override
     public UserDto update(UserDetails userDetails) {
-        User user = repository.findById(userDetails.getId()).orElseThrow(() -> new ApplicationException(ErrorsFinal.DATA_NOT_FOUND, Map.of("id", userDetails.getId())));
+        User user = repository.findById(userDetails.getId()).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", userDetails.getId())));
 
         user.setAge(userDetails.getAge());
         user.setName(userDetails.getName());
