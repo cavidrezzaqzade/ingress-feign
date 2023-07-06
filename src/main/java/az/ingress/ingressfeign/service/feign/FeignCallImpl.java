@@ -7,7 +7,6 @@ import az.ingress.ingressfeign.model.client.InformationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -27,7 +26,7 @@ public class FeignCallImpl implements FeignCall {
     }
 
     @Override
-    public ResponseEntity<?> fileManagement(MultipartFile[] files, InformationDto info) {
-        return fileClient.uploadImage(files, info);
+    public ResponseEntity<?> fileManagement(MultipartFile file, InformationDto info) {
+        return fileClient.uploadImage(file, info);
     }
 }

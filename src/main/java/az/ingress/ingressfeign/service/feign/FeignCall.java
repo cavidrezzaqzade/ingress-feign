@@ -12,6 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FeignCall {
 
     CatFactDto getCatFact();
-    ResponseEntity<?> fileManagement(MultipartFile[] files, InformationDto info);
+    ResponseEntity<?> fileManagement(MultipartFile file, InformationDto info);
 
 }
