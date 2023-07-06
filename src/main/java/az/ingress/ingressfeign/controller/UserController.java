@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "add", description = "add", tags = {"User"})
+    @ResponseStatus(HttpStatus.CREATED)
     public UserDto add(@RequestBody @Valid @NotNull UserDto dto){
         return service.add(dto);
     }
@@ -51,6 +53,7 @@ public class UserController {
     }
 
     @PatchMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "update by criteria", description = "update by criteria", tags = {"User"})
     public UserDto update(UserDetails user){
         return service.update(user);

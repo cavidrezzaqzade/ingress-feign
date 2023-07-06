@@ -33,7 +33,7 @@ public class FeignController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE/*consumes = {"multipart/form-data", "application/json"}*/)
     @Operation(summary = "upload images", description = "upload images", tags = {"Feign"})
-    public ResponseEntity<?> uploadImage(@RequestPart("file") MultipartFile file, @RequestPart("info") InformationDto info){
+    public String uploadImage(@RequestPart("file") MultipartFile file, @RequestPart("info") InformationDto info){
         System.out.println(file.getOriginalFilename());
         return fileManagementClient.uploadImage(file, info);
     }

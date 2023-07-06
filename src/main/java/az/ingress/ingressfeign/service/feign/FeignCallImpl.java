@@ -26,7 +26,7 @@ public class FeignCallImpl implements FeignCall {
     }
 
     @Override
-    public ResponseEntity<?> fileManagement(MultipartFile file, InformationDto info) {
+    public String fileManagement(MultipartFile file, InformationDto info) {
         return fileClient.uploadImage(file, info);
     }
 }

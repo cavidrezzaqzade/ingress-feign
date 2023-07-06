@@ -25,6 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileManagementClient {
 
     @PostMapping(value = "/v1/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    ResponseEntity<?> uploadImage(@RequestPart("file") MultipartFile file, @RequestPart("info") InformationDto info);
+    String uploadImage(@RequestPart("file") MultipartFile file, @RequestPart("info") InformationDto info);
 
 }
