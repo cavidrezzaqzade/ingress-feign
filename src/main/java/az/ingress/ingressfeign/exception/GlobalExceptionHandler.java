@@ -28,8 +28,7 @@ public class GlobalExceptionHandler extends DefaultErrorAttributes {
 
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<?> handle(ApplicationException ex, WebRequest request) {
-        log.error("ApplicationException Exception Handler exception -> {}", ex.getMessage());
-
+        log.error(" -> {}", ex.getMessage());
         return MessageResponse.response(ex.getMessage(), ofType(request, ex.getErrorResponse().getHttpStatus(), ex), ex.getErrorResponse().getHttpStatus());
     }
 
