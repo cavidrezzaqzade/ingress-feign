@@ -2,7 +2,7 @@ package az.ingress.ingressfeign.exception;
 
 import org.springframework.http.HttpStatus;
 
-public enum Errors implements ErrorResponse {
+public enum Errors implements Response {
     DATA_NOT_FOUND( "DATA_NOT_FOUND", HttpStatus.NOT_FOUND, "bu id-li '{id}' məlumat tapılmadı"),
     INTERNAL_SERVER_ERROR( "INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR, "daxili server xətası");
 

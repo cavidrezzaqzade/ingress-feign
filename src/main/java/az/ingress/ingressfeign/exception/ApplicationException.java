@@ -12,14 +12,14 @@ public class ApplicationException extends RuntimeException {
 
     static final long serialVersionUID = 1L;
 
-    private final ErrorResponse errorResponse;
+    private final Response errorResponse;
     private final Map<String, Object> messageArguments;
 
-    public ErrorResponse getErrorResponse() {
+    public Response getErrorResponse() {
         return errorResponse;
     }
 
-    public ApplicationException(ErrorResponse errorResponse, Map<String, Object> messageArguments) {
+    public ApplicationException(Response errorResponse, Map<String, Object> messageArguments) {
         this.errorResponse = errorResponse;
         this.messageArguments = messageArguments;
     }
