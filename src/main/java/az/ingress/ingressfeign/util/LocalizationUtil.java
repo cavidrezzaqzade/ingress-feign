@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 @UtilityClass
 public class LocalizationUtil {
+
     public static String getLocalizedMessageByStatusCode(String bundleName, Integer statusCode){
         var locale = LocaleContextHolder.getLocale();
         var resourceBundle = ResourceBundle.getBundle(bundleName, locale);

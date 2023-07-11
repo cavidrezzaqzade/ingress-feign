@@ -10,34 +10,32 @@ import java.util.Map;
 @Slf4j
 public class ApplicationException extends RuntimeException {
 
-    static final long serialVersionUID = 1L;
-
-    private final Response errorResponse;
+    private final Response response;
     private final Map<String, Object> messageArguments;
 
     public Response getErrorResponse() {
-        return errorResponse;
+        return response;
     }
 
     public ApplicationException(Response errorResponse, Map<String, Object> messageArguments) {
-        this.errorResponse = errorResponse;
+        this.response = errorResponse;
         this.messageArguments = messageArguments;
     }
 
     @Override
     public String getMessage() {
-        return messageArguments.isEmpty() ? errorResponse.getMessage() :
-                StringSubstitutor.replace(errorResponse.getMessage(), messageArguments, "{", "}");
+        return messageArguments.isEmpty() ? response.getMessage() :
+                StringSubstitutor.replace(response.getMessage(), messageArguments, "{", "}");
     }
 
     public String getLocalizedMessage(Locale locale, MessageSource messageSource) {
         try {
-            String localizedMessage = messageSource.getMessage(errorResponse.getKey(), new Object[]{}, locale);
+            String localizedMessage = messageSource.getMessage(response.getKey(), new Object[]{}, locale);
             return messageArguments.isEmpty() ? localizedMessage :
                     StringSubstitutor.replace(localizedMessage, messageArguments, "{", "}");
         } catch (NoSuchMessageException exception) {
             log.warn("Please consider adding localized message for key {} and locale {}",
-                    errorResponse.getKey(), locale);
+                    response.getKey(), locale);
         }
         return getMessage();
     }

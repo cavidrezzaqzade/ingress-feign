@@ -10,13 +10,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Slf4j
 @RestControllerAdvice
@@ -25,20 +22,21 @@ public class ErrorHandler extends DefaultErrorAttributes {
 
     private final MessageSource messageSource;
 
-    @ExceptionHandler(Exception.class)
-    @ResponseStatus(INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleGeneralException(Exception ex) {
-        log.error("General Exception: ", ex);
-
-        var message = Errors.INTERNAL_SERVER_ERROR.getMessage();
-
-        return ErrorResponse.builder()
-                .message(message)
-                .build();
-    }
+//    @ExceptionHandler(Exception.class)
+//    @ResponseStatus(INTERNAL_SERVER_ERROR)
+//    public ErrorResponse handleGeneralException(Exception ex) {
+//        log.error("General Exception: ", ex);
+//
+//        var message = Errors.INTERNAL_SERVER_ERROR.getMessage();
+//
+//        return ErrorResponse.builder()
+//                .message(message)
+//                .build();
+//    }
 
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<ErrorResponse> handle(ApplicationException ex) {
+
         log.error(" ApplicationException: ", ex);
 
         var message = ex.getLocalizedMessage(LocaleContextHolder.getLocale(), messageSource);
@@ -51,7 +49,6 @@ public class ErrorHandler extends DefaultErrorAttributes {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(BAD_REQUEST)
     public final ErrorResponse handle(MethodArgumentNotValidException ex) {
-        log.error(" MethodArgumentNotValidException: ", ex);
 
         List<ConstraintsViolationError> validationErrors = ex.getBindingResult()
                 .getFieldErrors()

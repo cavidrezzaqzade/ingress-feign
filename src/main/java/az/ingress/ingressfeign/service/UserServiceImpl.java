@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import static az.ingress.ingressfeign.exception.Errors.DATA_NOT_FOUND;
+
 /**
  * @author caci
  */
@@ -48,20 +50,20 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void delete(Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", id)));
+        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(DATA_NOT_FOUND, Map.of("id", id)));
         repository.delete(user);
     }
 
     @Override
     public UserDto update(UserDto dto, Long id) {
-        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", id)));
+        User user = repository.findById(id).orElseThrow(() -> new ApplicationException(DATA_NOT_FOUND, Map.of("id", id)));
         User userNew = mapper.updateUser(user, dto);
         return mapper.entityToDto(repository.save(userNew));
     }
 
     @Override
     public UserDto update(UserDetails userDetails) {
-        User user = repository.findById(userDetails.getId()).orElseThrow(() -> new ApplicationException(Errors.DATA_NOT_FOUND, Map.of("id", userDetails.getId())));
+        User user = repository.findById(userDetails.getId()).orElseThrow(() -> new ApplicationException(DATA_NOT_FOUND, Map.of("id", userDetails.getId())));
 
         user.setAge(userDetails.getAge());
         user.setName(userDetails.getName());
