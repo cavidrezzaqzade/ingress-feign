@@ -13,6 +13,7 @@ import az.ingress.ingressfeign.model.criteria.UserCriteria;
 import az.ingress.ingressfeign.model.response.PageableUserResponse;
 import az.ingress.ingressfeign.service.specification.UserSpecification;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,11 @@ public class UserServiceImpl implements UserService{
     private static final Integer PAGE_DEFAULT = 1;
     private static final Integer COUNT_DEFAULT = 10;
 
+    @SneakyThrows
     @Override
     public List<UserDto> getAll() {
+        if(true)
+            throw new Exception("obaaa");
         List<User> users = repository.findAll();
         return mapper.entitiesToDtos(users);
     }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static az.ingress.ingressfeign.util.LocalizationUtil.getLocalizedMessageByKey;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @Slf4j
 @RestControllerAdvice
@@ -22,17 +24,18 @@ public class ErrorHandler extends DefaultErrorAttributes {
 
     private final MessageSource messageSource;
 
-//    @ExceptionHandler(Exception.class)
-//    @ResponseStatus(INTERNAL_SERVER_ERROR)
-//    public ErrorResponse handleGeneralException(Exception ex) {
-//        log.error("General Exception: ", ex);
-//
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    public ErrorResponse handleGeneralException(Exception ex) {
+        log.error("General Exception: ", ex);
+
+        var m = getLocalizedMessageByKey("errors", "unexpected.exception");
 //        var message = Errors.INTERNAL_SERVER_ERROR.getMessage();
-//
-//        return ErrorResponse.builder()
-//                .message(message)
-//                .build();
-//    }
+
+        return ErrorResponse.builder()
+                .message(m)
+                .build();
+    }
 
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<ErrorResponse> handle(ApplicationException ex) {

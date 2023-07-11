@@ -11,6 +11,11 @@ import java.util.ResourceBundle;
 @UtilityClass
 public class LocalizationUtil {
 
+    public static String getLocalizedMessageByKey(String bundleName, String key){
+        var locale = LocaleContextHolder.getLocale();
+        return ResourceBundle.getBundle(bundleName, locale).getString(key);
+    }
+
     public static String getLocalizedMessageByStatusCode(String bundleName, Integer statusCode){
         var locale = LocaleContextHolder.getLocale();
         var resourceBundle = ResourceBundle.getBundle(bundleName, locale);
@@ -27,10 +32,5 @@ public class LocalizationUtil {
             }
         }
         return resourceBundle.getString("unexpected.exception");
-    }
-
-    public static String getLocalizedMessageByKey(String bundleName, String key){
-        var locale = LocaleContextHolder.getLocale();
-        return ResourceBundle.getBundle(bundleName, locale).getString(key);
     }
 }
