@@ -40,8 +40,6 @@ public class UserServiceImpl implements UserService{
     @SneakyThrows
     @Override
     public List<UserDto> getAll() {
-        if(true)
-            throw new Exception("obaaa");
         List<User> users = repository.findAll();
         return mapper.entitiesToDtos(users);
     }
