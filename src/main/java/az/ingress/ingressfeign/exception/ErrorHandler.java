@@ -39,7 +39,6 @@ public class ErrorHandler extends DefaultErrorAttributes {
 
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<ErrorResponse> handle(ApplicationException ex) {
-
         log.error(" ApplicationException: ", ex);
 
         var message = ex.getLocalizedMessage(LocaleContextHolder.getLocale(), messageSource);
@@ -52,6 +51,7 @@ public class ErrorHandler extends DefaultErrorAttributes {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(BAD_REQUEST)
     public final ErrorResponse handle(MethodArgumentNotValidException ex) {
+        log.error(" MethodArgumentNotValidException: ", ex);
 
         List<ConstraintsViolationError> validationErrors = ex.getBindingResult()
                 .getFieldErrors()
